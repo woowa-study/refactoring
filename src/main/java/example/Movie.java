@@ -1,30 +1,34 @@
 package example;
 
 public class Movie {
-    public static final int CHILDREN = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-    private String title;
-    private int priceCode;
 
-    public Movie(String title, int priceCode) {
+    private String title;
+    private Type type;
+
+    private FeeCalculator feeCalculator;
+
+    public Movie(String title, Type type) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.type = type;
+
+        feeCalculator = FeeCalculatorFactory.getFeeCalculator(type);
+    }
+
+    public double getRentalFee(int daysRented) {
+        return feeCalculator.calculate(daysRented);
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Type getType() {
+        return type;
     }
 
-    public int getPriceCode() {
-        return priceCode;
-    }
-
-    public void setPriceCode(int priceCode) {
-        this.priceCode = priceCode;
+    public enum Type {
+        CHILDREN,
+        REGULAR,
+        NEW_RELEASE;
     }
 }
