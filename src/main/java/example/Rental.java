@@ -16,4 +16,13 @@ public class Rental {
     public int getDaysRented() {
         return daysRented;
     }
+
+    public String getRentalInfoString() {
+        return "\t" + this.movie.getTitle() + "\t"
+                + this.movie.calculateRentalFee(daysRented)  + "\n";
+    }
+
+    public double calculateRentalFee() {
+        return movie.calculateRentalFee(this.daysRented);
+    }
 }
