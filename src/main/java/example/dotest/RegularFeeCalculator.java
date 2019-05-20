@@ -1,8 +1,8 @@
-package example;
+package example.dotest;
 
-public class ChildrenFeeCalculator implements FeeCalculator {
-    private static final double DEFAULT_FEE = 1.5;
-    private static final int BASE_DAYS = 3;
+public class RegularFeeCalculator implements FeeCalculator {
+    private static final double DEFAULT_FEE = 2.0;
+    private static final int BASE_DAYS = 2;
     private static final double ADDITIONAL_FEE = 1.5;
 
     @Override
@@ -11,6 +11,7 @@ public class ChildrenFeeCalculator implements FeeCalculator {
         if (daysRented > BASE_DAYS) {
             rentalFee += (daysRented - BASE_DAYS) * ADDITIONAL_FEE;
         }
+
         return rentalFee;
     }
 }

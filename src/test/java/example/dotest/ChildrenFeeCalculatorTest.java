@@ -1,5 +1,7 @@
-package example;
+package example.dotest;
 
+import example.dotest.ChildrenFeeCalculator;
+import example.dotest.FeeCalculator;
 import org.junit.Test;
 
 import static common.TestConstant.DEFAULT_DELTA;

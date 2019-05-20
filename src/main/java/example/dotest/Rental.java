@@ -1,6 +1,6 @@
-package example;
+package example.dotest;
 
-import static example.Movie.Type.NEW_RELEASE;
+import static example.dotest.Movie.Type.NEW_RELEASE;
 import static java.util.Optional.ofNullable;
 
 public class Rental {

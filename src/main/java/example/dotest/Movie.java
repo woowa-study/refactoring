@@ -1,4 +1,4 @@
-package example;
+package example.dotest;
 
 import static java.util.Optional.ofNullable;
 

@@ -1,4 +1,4 @@
-package example;
+package example.dotest;
 
 import java.util.Objects;
 import java.util.Vector;

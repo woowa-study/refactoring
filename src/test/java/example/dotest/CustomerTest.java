@@ -1,5 +1,8 @@
-package example;
+package example.dotest;
 
+import example.dotest.Customer;
+import example.dotest.Movie;
+import example.dotest.Rental;
 import org.junit.Before;
 import org.junit.Test;
 
