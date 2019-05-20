@@ -1,30 +1,23 @@
 package example;
 
 public class Movie {
-    public static final int CHILDREN = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-    private String title;
-    private int priceCode;
+    private final String title;
+    private final MoviceType moviceType;
 
-    public Movie(String title, int priceCode) {
+    public Movie(String title, MoviceType moviceType) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.moviceType = moviceType;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public MoviceType getMoviceType() {
+        return moviceType;
     }
 
-    public int getPriceCode() {
-        return priceCode;
-    }
-
-    public void setPriceCode(int priceCode) {
-        this.priceCode = priceCode;
+    enum MoviceType {
+        CHILDREN, REGULAR, NEW_RELEASE;
     }
 }

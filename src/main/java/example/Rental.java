@@ -16,4 +16,13 @@ public class Rental {
     public int getDaysRented() {
         return daysRented;
     }
+
+    public double calculateRentFee() {
+        //비디오 종류별 대여료 계산
+        return MovieRentFeeCalculator.calculateRentFee(movie.getMoviceType(), daysRented);
+    }
+
+    public int calculatePoint() {
+        return MovieRentPointCalculator.calculatePoint(movie.getMoviceType(), daysRented);
+    }
 }
