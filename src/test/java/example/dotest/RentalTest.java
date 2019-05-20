@@ -1,7 +1,5 @@
 package example.dotest;
 
-import example.dotest.Movie;
-import example.dotest.Rental;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

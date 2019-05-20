@@ -1,6 +1,5 @@
 package example.dotest;
 
-import example.dotest.Movie;
 import org.junit.Test;
 
 public class MovieTest {

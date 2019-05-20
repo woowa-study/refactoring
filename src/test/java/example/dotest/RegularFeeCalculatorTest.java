@@ -1,7 +1,5 @@
 package example.dotest;
 
-import example.dotest.FeeCalculator;
-import example.dotest.RegularFeeCalculator;
 import org.junit.Test;
 
 import static common.TestConstant.DEFAULT_DELTA;
