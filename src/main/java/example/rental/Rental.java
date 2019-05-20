@@ -1,4 +1,7 @@
-package example;
+package example.rental;
+
+import example.movie.Movie;
+import example.movie.NewReleaseMovie;
 
 public class Rental {
     private Movie movie;
@@ -13,16 +16,14 @@ public class Rental {
         return movie;
     }
 
-    public int getDaysRented() {
-        return daysRented;
-    }
-
-    public String getRentalInfoString() {
-        return "\t" + this.movie.getTitle() + "\t"
-                + this.movie.calculateRentalFee(daysRented)  + "\n";
-    }
-
     public double calculateRentalFee() {
         return movie.calculateRentalFee(this.daysRented);
+    }
+
+    public double calculateBonusPoint() {
+        if (this.movie instanceof NewReleaseMovie && daysRented > 1) {
+            return 2;
+        }
+        return 1;
     }
 }
