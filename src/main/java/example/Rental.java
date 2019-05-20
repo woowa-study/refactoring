@@ -1,19 +1,22 @@
 package example;
 
 import static example.Movie.Type.NEW_RELEASE;
+import static java.util.Optional.ofNullable;
 
 public class Rental {
+    private final static int DEFAULT_RENTAL_POINT = 1;
+    private final static int NEW_RELEASE_ADDITIONAL_POINT_RENT_DAY = 1;
 
     private Movie movie;
     private int daysRented;
 
     public Rental(Movie movie, int daysRented) {
-        this.movie = movie;
-        this.daysRented = daysRented;
-    }
+        if (daysRented <= 0) {
+            throw new IllegalArgumentException();
+        }
 
-    public Movie getMovie() {
-        return movie;
+        this.movie = ofNullable(movie).orElseThrow(IllegalArgumentException::new);
+        this.daysRented = daysRented;
     }
 
     public double getRentalFee() {
@@ -23,13 +26,16 @@ public class Rental {
 
 
     public int getRenterPoint() {
-        int rentalPoint = 1;
         // 최신물을 이틀 이상 대여하면 보너스 포인트 지급
         if ((movie.getType() == NEW_RELEASE)
-                && daysRented > 1) {
-            rentalPoint++;
+                && daysRented > NEW_RELEASE_ADDITIONAL_POINT_RENT_DAY) {
+            return DEFAULT_RENTAL_POINT + 1;
         }
 
-        return rentalPoint;
+        return DEFAULT_RENTAL_POINT;
+    }
+
+    public String getMovieTitle() {
+        return movie.getTitle();
     }
 }

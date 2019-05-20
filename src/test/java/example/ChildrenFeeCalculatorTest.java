@@ -2,10 +2,10 @@ package example;
 
 import org.junit.Test;
 
+import static common.TestConstant.DEFAULT_DELTA;
 import static org.junit.Assert.assertEquals;
 
 public class ChildrenFeeCalculatorTest {
-    private final double DEFAULT_DELTA = 0.01;
 
     @Test
     public void CHILDREN_대여기간이_4일_이상인_경우_추가_대여료가_발생한다() {

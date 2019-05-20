@@ -1,5 +1,7 @@
 package example;
 
+import static java.util.Optional.ofNullable;
+
 public class Movie {
 
     private String title;
@@ -8,8 +10,8 @@ public class Movie {
     private FeeCalculator feeCalculator;
 
     public Movie(String title, Type type) {
-        this.title = title;
-        this.type = type;
+        this.title = ofNullable(title).orElseThrow(IllegalArgumentException::new);
+        amendType(type);
 
         feeCalculator = FeeCalculatorFactory.getFeeCalculator(type);
     }
@@ -24,6 +26,10 @@ public class Movie {
 
     public Type getType() {
         return type;
+    }
+
+    public void amendType(Movie.Type type) {
+        this.type = ofNullable(type).orElseThrow(IllegalArgumentException::new);
     }
 
     public enum Type {

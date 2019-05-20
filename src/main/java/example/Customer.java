@@ -1,6 +1,6 @@
 package example;
 
-import java.util.Enumeration;
+import java.util.Objects;
 import java.util.Vector;
 
 public class Customer {
@@ -9,6 +9,10 @@ public class Customer {
     private Vector<Rental> rentals = new Vector<>();
 
     public Customer(String name) {
+        if (Objects.isNull(name) || "".equals(name)) {
+            throw new IllegalArgumentException();
+        }
+
         this.name = name;
     }
 
@@ -16,33 +20,30 @@ public class Customer {
         rentals.add(rental);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
+        StringBuilder statement = new StringBuilder();
+        statement.append(String.format("%s 고객님의 대여 기록\n", name));
 
-        Enumeration<Rental> rentals = this.rentals.elements();
-        String result = getName() + " 고객님의 대여 기록\n";
-        while (rentals.hasMoreElements()) {
-            Rental each = rentals.nextElement();
-            double rentalFee = each.getRentalFee();
-            frequentRenterPoints += each.getRenterPoint();
+        rentals.forEach(rental ->
+                statement.append(String.format("\t%s\t%.1f\n", rental.getMovieTitle(), rental.getRentalFee()))
+        );
 
-            // 이번에 대여하는 비디오 정보와 대여료를 출력
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(rentalFee) + "\n";
-            // 현재까지 누적된 총 대여료
-            totalAmount += rentalFee;
-        }
-        // 푸터 행 추가
-        result += "누적 대여료" + String.valueOf(totalAmount) + "\n";
-        result += "적립 포인트" + String.valueOf(frequentRenterPoints);
+        statement.append(String.format("누적 대여료%.1f\n", getTotalFee()));
+        statement.append(String.format("적립 포인트%d", getTotalFrequentPoints()));
 
-        return result;
+        return statement.toString();
     }
 
 
+    public double getTotalFee() {
+        return rentals.stream()
+                .mapToDouble(Rental::getRentalFee)
+                .sum();
+    }
 
+    public int getTotalFrequentPoints() {
+        return rentals.stream()
+                .mapToInt(Rental::getRenterPoint)
+                .sum();
+    }
 }

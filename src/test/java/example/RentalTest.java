@@ -1,6 +1,7 @@
 package example;
 
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,5 +34,21 @@ public class RentalTest {
         assertEquals(rental.getRenterPoint(), 1);
     }
 
+    @Test
+    public void getMovieTitle_대여한_영화_제목을_가져온다() {
+        Rental rental = new Rental(regular, 1);
+        assertEquals(rental.getMovieTitle(), "정규 영화");
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void Rental_생성시_Movie는_null일수_없습니다() {
+        // given & when & then
+        new Rental(null, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void Rental_생성시_대여기간은_1일이상_이어야합니다() {
+        // given & when & then
+        new Rental(newRelease, 0);
+    }
 }
