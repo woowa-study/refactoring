@@ -2,9 +2,9 @@ package example;
 
 public class Movie {
     private final String title;
-    private final MoviceType moviceType;
+    private final MovieType moviceType;
 
-    public Movie(String title, MoviceType moviceType) {
+    public Movie(String title, MovieType moviceType) {
         this.title = title;
         this.moviceType = moviceType;
     }
@@ -13,11 +13,8 @@ public class Movie {
         return title;
     }
 
-    public MoviceType getMoviceType() {
+    public MovieType getMoviceType() {
         return moviceType;
     }
 
-    enum MoviceType {
-        CHILDREN, REGULAR, NEW_RELEASE;
-    }
 }

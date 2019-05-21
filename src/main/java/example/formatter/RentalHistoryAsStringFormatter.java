@@ -15,7 +15,6 @@ public class RentalHistoryAsStringFormatter implements RentalHistoryFormatter<St
     public String format(CustomerView customerView, RentMovieView rentMovieView) { // customerView, rentMovieView는 자주 따로 쓰이지 않을까 싶어서 Dto 분리
         StringBuilder sb = new StringBuilder();
         sb.append(formatCustomerView(customerView));
-//        sb.append(rentMovieView.getRentMovieDtoList().stream().map(this::formatRentMovieDto).collect(Collectors.joining()));
         sb.append(formatRentMovieDtoList(rentMovieView.getRentMovieDtoList(), this::formatRentMovieDto));
         sb.append(formatRentMovieView(rentMovieView));
         return sb.toString();

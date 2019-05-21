@@ -3,10 +3,12 @@ package example;
 public class Rental {
     private Movie movie;
     private int daysRented;
+    private MovieRentFeeCalculator movieRentFeeCalculator;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
         this.daysRented = daysRented;
+        this.movieRentFeeCalculator = new MovieRentFeeCalculator();
     }
 
     public Movie getMovie() {
@@ -19,7 +21,7 @@ public class Rental {
 
     public double calculateRentFee() {
         //비디오 종류별 대여료 계산
-        return MovieRentFeeCalculator.calculateRentFee(movie.getMoviceType(), daysRented);
+        return movieRentFeeCalculator.chargeFee(new DefaultChargeCondition(movie.getMoviceType(), daysRented));
     }
 
     public int calculatePoint() {
