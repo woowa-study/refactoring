@@ -1,5 +1,9 @@
 package example;
 
+import example.charge.movie.MovieChargeCondition;
+import example.charge.movie.MovieRentFeeCalculator;
+import example.point.MovieRentPointCalculator;
+
 public class Rental {
     private Movie movie;
     private int daysRented;
@@ -21,7 +25,7 @@ public class Rental {
 
     public double calculateRentFee() {
         //비디오 종류별 대여료 계산
-        return movieRentFeeCalculator.chargeFee(new DefaultChargeCondition(movie.getMoviceType(), daysRented));
+        return movieRentFeeCalculator.chargeFee(new MovieChargeCondition(movie.getMoviceType(), daysRented));
     }
 
     public int calculatePoint() {
