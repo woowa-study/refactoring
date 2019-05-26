@@ -1,5 +1,5 @@
 package example;
 
-public enum MovieType {
+public enum MoviePriceCode {
     CHILDREN, REGULAR, NEW_RELEASE;
 }

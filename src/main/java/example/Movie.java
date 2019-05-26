@@ -2,19 +2,19 @@ package example;
 
 public class Movie {
     private final String title;
-    private final MovieType moviceType;
+    private final MoviePriceCode moviceType;
 
-    public Movie(String title, MovieType moviceType) {
+    public Movie(String title, MoviePriceCode movieType) {
+        assert title != null && movieType != null;
         this.title = title;
-        this.moviceType = moviceType;
+        this.moviceType = movieType;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public MovieType getMoviceType() {
+    public MoviePriceCode getMovieType() {
         return moviceType;
     }
-
 }

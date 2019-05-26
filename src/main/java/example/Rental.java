@@ -1,18 +1,19 @@
 package example;
 
-import example.charge.movie.MovieChargeCondition;
-import example.charge.movie.MovieRentFeeCalculator;
-import example.point.MovieRentPointCalculator;
+import example.charge.RentalFeeCalculator;
+import example.point.PointCalculator;
 
 public class Rental {
-    private Movie movie;
-    private int daysRented;
-    private MovieRentFeeCalculator movieRentFeeCalculator;
-
+    private final Movie movie;
+    private final int daysRented;
+    private final RentalFeeCalculator movieRentFeeCalculator = new RentalFeeCalculator();
+    private final PointCalculator pointCalculator = new PointCalculator();
+    private final MovieRentalCondition movieRentalCondition;
     public Rental(Movie movie, int daysRented) {
+        assert movie != null && daysRented > 0;
         this.movie = movie;
         this.daysRented = daysRented;
-        this.movieRentFeeCalculator = new MovieRentFeeCalculator();
+        this.movieRentalCondition = new MovieRentalCondition(movie.getMovieType(), daysRented);
     }
 
     public Movie getMovie() {
@@ -25,10 +26,12 @@ public class Rental {
 
     public double calculateRentFee() {
         //비디오 종류별 대여료 계산
-        return movieRentFeeCalculator.chargeFee(new MovieChargeCondition(movie.getMoviceType(), daysRented));
+        return movieRentFeeCalculator.calculate(movieRentalCondition)
+                .getRentalFee();
     }
 
     public int calculatePoint() {
-        return MovieRentPointCalculator.calculatePoint(movie.getMoviceType(), daysRented);
+        return pointCalculator.calculate(movieRentalCondition)
+                .getPoint();
     }
 }

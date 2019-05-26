@@ -4,7 +4,8 @@ import example.dto.CustomerView;
 import example.dto.RentMovieView;
 import example.formatter.RentalHistoryAsStringFormatter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
     private final String name;
@@ -15,6 +16,7 @@ public class Customer {
     }
 
     public void addRental(Rental arg) {
+        assert arg != null;
         this.rentals.add(arg);
     }
 
@@ -22,7 +24,7 @@ public class Customer {
         return name;
     }
 
-    private String statement_2(){
+    public String statement_2(){
         return rentalHistoryFormatter.format( new CustomerView(this.name),  new RentMovieView(this.rentals));
     }
 //    public String statement() {
