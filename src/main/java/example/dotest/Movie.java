@@ -28,6 +28,7 @@ public class Movie {
         return type;
     }
 
+    //TODO FeeCalculator도 변경되게 해야함.
     public void amendType(Movie.Type type) {
         this.type = ofNullable(type).orElseThrow(IllegalArgumentException::new);
     }
