@@ -1,5 +1,6 @@
 package example.dotest;
 
+import java.util.Collection;
 import java.util.Objects;
 import java.util.Vector;
 
@@ -7,7 +8,7 @@ public class Customer {
 
     private String name;
     //TODO Vector 구현클래스 말고 List 또는 Collection 인터페이스로 변경하자
-    private Vector<Rental> rentals = new Vector<>();
+    private Collection<Rental> rentals = new Vector<>();
 
     public Customer(String name) {
         if (Objects.isNull(name) || "".equals(name)) {
